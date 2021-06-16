@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import bag from "../images/bag.png";
 
@@ -8,10 +8,12 @@ const Post = ({
   userName,
   postType,
   BigText,
-  City,
   Company,
+  City = "",
   additional = "",
 }) => {
+  const [toolTip, setToolTip] = useState(false);
+
   return (
     <StyledPost>
       {postImage && <img className="image" src={postImage} alt="post" />}
@@ -20,8 +22,19 @@ const Post = ({
         {BigText && (
           <span>
             <h3>{BigText}</h3>
-            <span className="box">
-              <i class="fas fa-ellipsis-h"></i>
+            <span className={`${toolTip ? "toolBtn box" : "box"}`}>
+              <i
+                className="fas fa-ellipsis-h"
+                onClick={() => setToolTip(!toolTip)}
+              ></i>
+              <span
+                className="tooltiptext"
+                style={{ display: `${toolTip ? "flex" : "none"}` }}
+              >
+                <a href="#">Edit</a>
+                <a href="#">Report</a>
+                <a href="#">About</a>
+              </span>
             </span>
           </span>
         )}
@@ -47,7 +60,7 @@ const Post = ({
             {additional == "Date" ? (
               <div className="tap">Visit Website</div>
             ) : (
-              <div className="tap green">Visit Website</div>
+              <div className="tap green">Apply on Timesjobs</div>
             )}
           </>
         )}
@@ -92,9 +105,35 @@ const StyledPost = styled.div`
       .box {
         width: 36px;
         height: 32px;
+        position: relative;
         transition: all 0.5s ease;
+        .tooltiptext {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 0.5rem;
+          width: 120px;
+          background: #ffffff;
+          box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16),
+            0px 0px 2px rgba(0, 0, 0, 0.08);
+          color: #fff;
+          border-radius: 6px;
+          position: absolute;
+          z-index: 1;
+          top: 30px;
+          right: 110%;
+          a {
+            color: black;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            font-weight: lighter;
+          }
+        }
       }
-      .box:hover {
+
+      .box:hover,
+      .toolBtn {
         border-radius: 4px;
         background-color: #bfc0c0;
         display: flex;

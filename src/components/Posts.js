@@ -23,6 +23,8 @@ import meetup from "../images/Meetup.png";
 import recommended from "../images/recommended.png";
 //Post
 import Post from "../components/Post";
+//components
+import Follow from "../components/follow";
 
 const Posts = () => {
   const [focused, setFocused] = useState(true);
@@ -42,14 +44,6 @@ const Posts = () => {
 
   const blurHandler = () => {
     location.current.blur();
-  };
-
-  const clickHandler = () => {
-    if (follow == "FOLLOWED") {
-      setFollow("FOLLOW");
-    } else {
-      setFollow("FOLLOWED");
-    }
   };
 
   return (
@@ -76,6 +70,7 @@ const Posts = () => {
           userImage={user2}
           userName="Ronal Jones"
           postType={meetup}
+          City="Ahmedabad"
           additional="Date"
         />
         <Post
@@ -83,6 +78,7 @@ const Posts = () => {
           userImage={user3}
           userName="Joseph Gray"
           postType={job}
+          City="Noida"
           Company="Innovacer Analytics Private Ltd."
           BigText="Software Developer"
         />
@@ -112,24 +108,12 @@ const Posts = () => {
           <h4>
             <img src={recommended} alt="" /> RECOMMENDED GROUPS
           </h4>
-          <h3>
-            <img src={follow0} alt="" /> Leisure
-            <button onClick={clickHandler}>{follow}</button>
-          </h3>
-          <h3>
-            <img src={follow1} alt="" /> Activism
-            <button onClick={clickHandler}>{follow}</button>
-          </h3>
-          <h3>
-            <img src={follow2} alt="" /> MBA
-            <button onClick={clickHandler}>{follow}</button>
-          </h3>
-          <h3>
-            <img src={follow3} alt="" />
-            Philosophy
-            <button onClick={clickHandler}>{follow}</button>
-          </h3>
+          <Follow followImage={follow0} followName="Leisure" />
+          <Follow followImage={follow1} followName="Activism" />
+          <Follow followImage={follow2} followName="MBA" />
+          <Follow followImage={follow3} followName="Philosophy" />
         </span>
+        <h6 className="see">See More...</h6>
       </StyledLocation>
     </StyledPosts>
   );
@@ -190,7 +174,10 @@ const StyledLocation = styled.div`
 
     opacity: 0.5;
   }
-
+  .see {
+    text-align: right;
+    color: blue;
+  }
   .groups {
     h4 {
       margin-top: 80px;

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 //images
 import union from "../images/Union.png";
+import user3 from "../images/user3.png";
 //style
 import styled from "styled-components";
 //Modal
@@ -8,6 +9,8 @@ import Modal from "../components/Modal";
 
 const Nav = () => {
   const [modal, setModal] = useState(false);
+  const [logged, setLogged] = useState(false);
+  const [tool, setTool] = useState(false);
 
   const modalHandler = () => {
     setModal(!modal);
@@ -28,13 +31,30 @@ const Nav = () => {
             <i class="fas fa-search"></i>Search for your favorite groups int ATG
           </p>
         </li>
-        <li className="acc" onClick={modalHandler}>
-          <p>
-            Create account.{" "}
-            <a>
-              It's free!{" "}
-              <i class="fas fa-sort-down" style={{ color: "black" }}></i>
-            </a>
+        <li className="acc">
+          {logged ? (
+            <span className="user">
+              <img src={user3} />
+              &nbsp;Siddharth Goyal&nbsp;
+            </span>
+          ) : (
+            <p onClick={modalHandler}>
+              Create account. <a>It's free! &nbsp;</a>
+            </p>
+          )}
+          <p className="down">
+            <i
+              className="fas fa-sort-down"
+              style={{ color: "black" }}
+              onClick={() => setTool(!tool)}
+            ></i>
+            <span
+              className="tool tooltiptext"
+              style={{ display: `${tool ? "block" : "none"}` }}
+              onClick={() => setLogged(!logged)}
+            >
+              {logged ? "LogOut" : "Direct Login"}
+            </span>
           </p>
         </li>
       </ul>
@@ -95,6 +115,42 @@ const Navbar = styled.nav`
       padding-right: 10px;
     }
   }
+  .acc {
+    display: flex;
+    flex-direction: row;
+    .user {
+      display: flex;
+      align-items: center;
+      img {
+        width: 36px;
+        height: 36px;
+      }
+      font-size: 14px;
+      color: #000000;
+      font-weight: normal;
+    }
+    .tooltiptext {
+      display: none;
+      width: 120px;
+      border: 1px solid grey;
+      color: black;
+      text-align: center;
+      border-radius: 6px;
+      padding: 3px 0;
+      cursor: pointer;
+      background: #ffffff;
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16),
+        0px 0px 2px rgba(0, 0, 0, 0.08);
+      position: absolute;
+      font-weight: normal;
+      z-index: 1;
+      top: 50px;
+      right: 5%;
+    }
+    .down {
+      cursor: pointer;
+    }
+  }
   .acc > p {
     font-family: IBM Plex Sans;
     font-style: normal;
@@ -105,9 +161,6 @@ const Navbar = styled.nav`
     cursor: pointer;
     a {
       color: blue;
-      cursor: pointer;
-    }
-    i {
       cursor: pointer;
     }
   }

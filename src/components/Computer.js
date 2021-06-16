@@ -6,6 +6,9 @@ const Computer = () => {
   return (
     <StyledComp>
       <div>
+        <span className="mobJoin">
+          <i class="fas fa-arrow-left"></i> <p>Join Group</p>
+        </span>
         <h1>Computer Engineering</h1>
         <h3>142,765 Computer Engineers follow this</h3>
       </div>
@@ -36,12 +39,40 @@ const StyledComp = styled.div`
     margin-top: auto;
     padding-left: 80px;
   }
+  .mobJoin {
+    display: none;
+    justify-content: space-between;
+    padding: 2rem;
+    color: white;
+    p {
+      cursor: pointer;
+      width: 100px;
+      text-align: center;
+      border: 0.8px solid #ffffff;
+      box-sizing: border-box;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 0.9cm;
+      letter-spacing: 0.05cm;
+      padding: 0;
+      color: white;
+    }
+    i {
+      cursor: pointer;
+    }
+  }
   h3 {
     font-weight: normal;
     font-size: 18px;
     line-height: 23px;
     padding-left: 80px;
     padding-bottom: 60px;
+  }
+  @media (max-width: 499px) {
+    .mobJoin {
+      display: flex;
+    }
   }
 `;
 
