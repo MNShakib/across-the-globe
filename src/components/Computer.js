@@ -76,7 +76,7 @@ const StyledComp = styled.div`
     }
   }
 
-  @media (max-width: 499px) {
+  @media (max-width: 699px) {
     .mobJoin {
       display: flex;
     }

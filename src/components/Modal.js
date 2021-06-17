@@ -77,7 +77,7 @@ const Modal = ({ modal }) => {
                   <button type="submit" className="signupbtn">
                     {signIn ? "Create Account" : "Sign In"}
                   </button>
-                  <h3 className="mobSign">
+                  <h3 className="mobSign" onClick={signInUpHandler}>
                     {signIn ? "or, Sign In" : "or, Create Account"}
                   </h3>
                 </div>
@@ -99,11 +99,17 @@ const Modal = ({ modal }) => {
             </span>
             <span className="photo">
               <a onClick={signInUpHandler}>
-                <h3>
-                  {signIn
-                    ? "Already have account?Sign In"
-                    : "Does not have account yet?Create new for free!"}
-                </h3>
+                {signIn ? (
+                  <h3>
+                    Already have account?
+                    <span style={{ color: "blue" }}>Sign In</span>
+                  </h3>
+                ) : (
+                  <h3>
+                    Does not have account yet?
+                    <span style={{ color: "blue" }}>Create new for free!</span>
+                  </h3>
+                )}
               </a>
               <img src={log} />
               {signIn && (
@@ -318,6 +324,10 @@ const Log = styled.div`
       font-size: 12px;
       text-align: right;
       color: #3d3d3d;
+      span {
+        font-size: 12px;
+        font-weight: normal;
+      }
     }
     img {
       padding-left: 20px;

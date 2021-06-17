@@ -124,7 +124,7 @@ const StyledOutline = styled.div`
   @media (max-width: 699px) {
     padding: 1rem 1rem 0 1rem;
   }
-  @media (max-width: 499px) {
+  @media (max-width: 599px) {
     .cred {
       display: none;
     }
