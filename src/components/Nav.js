@@ -7,13 +7,18 @@ import styled from "styled-components";
 //Modal
 import Modal from "../components/Modal";
 
-const Nav = () => {
+const Nav = ({ loggingHandler }) => {
   const [modal, setModal] = useState(false);
   const [logged, setLogged] = useState(false);
   const [tool, setTool] = useState(false);
 
   const modalHandler = () => {
     setModal(!modal);
+  };
+
+  const logHandler = () => {
+    setLogged(!logged);
+    loggingHandler();
   };
 
   return (
@@ -44,14 +49,14 @@ const Nav = () => {
           )}
           <p className="down">
             <i
-              className="fas fa-sort-down"
+              className={`${tool ? "fas fa-sort-up" : "fas fa-sort-down"}`}
               style={{ color: "black" }}
               onClick={() => setTool(!tool)}
             ></i>
             <span
               className="tool tooltiptext"
               style={{ display: `${tool ? "block" : "none"}` }}
-              onClick={() => setLogged(!logged)}
+              onClick={logHandler}
             >
               {logged ? "LogOut" : "Direct Login"}
             </span>

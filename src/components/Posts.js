@@ -26,7 +26,7 @@ import Post from "../components/Post";
 //components
 import Follow from "../components/follow";
 
-const Posts = () => {
+const Posts = ({ log }) => {
   const [focused, setFocused] = useState(true);
   const [follow, setFollow] = useState("FOLLOW");
   const location = useRef();
@@ -104,16 +104,20 @@ const Posts = () => {
           <i class="fas fa-exclamation-circle"></i> Your location will help us
           serve better and extend a personalised experience
         </h6>
-        <span className="groups">
-          <h4>
-            <img src={recommended} alt="" /> RECOMMENDED GROUPS
-          </h4>
-          <Follow followImage={follow0} followName="Leisure" />
-          <Follow followImage={follow1} followName="Activism" />
-          <Follow followImage={follow2} followName="MBA" />
-          <Follow followImage={follow3} followName="Philosophy" />
-        </span>
-        <h6 className="see">See More...</h6>
+        {log && (
+          <>
+            <span className="groups">
+              <h4>
+                <img src={recommended} alt="" /> RECOMMENDED GROUPS
+              </h4>
+              <Follow followImage={follow0} followName="Leisure" />
+              <Follow followImage={follow1} followName="Activism" />
+              <Follow followImage={follow2} followName="MBA" />
+              <Follow followImage={follow3} followName="Philosophy" />
+            </span>
+            <h6 className="see">See More...</h6>
+          </>
+        )}
       </StyledLocation>
     </StyledPosts>
   );

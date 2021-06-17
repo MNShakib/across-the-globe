@@ -37,7 +37,10 @@ const StyledComp = styled.div`
     line-height: 47px;
     color: #ffffff;
     margin-top: auto;
-    padding-left: 80px;
+    padding-left: 7%;
+    @media (max-width: 599px) {
+      font-size: 24px;
+    }
   }
   .mobJoin {
     display: none;
@@ -66,9 +69,13 @@ const StyledComp = styled.div`
     font-weight: normal;
     font-size: 18px;
     line-height: 23px;
-    padding-left: 80px;
-    padding-bottom: 60px;
+    padding-left: 7%;
+    padding-bottom: 80px;
+    @media (max-width: 599px) {
+      font-size: 14px;
+    }
   }
+
   @media (max-width: 499px) {
     .mobJoin {
       display: flex;

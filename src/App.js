@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import Main from "./Pages/Main";
 import GlobalStyle from "./GlobalStyle";
 import Nav from "./components/Nav";
@@ -7,13 +7,19 @@ import Outline from "./components/Outline";
 import Posts from "./components/Posts";
 
 function App() {
+  const [logging, setLogging] = useState(false);
+
+  const loggingHandler = () => {
+    setLogging(!logging);
+  };
+
   return (
     <div className="App">
       <GlobalStyle />
-      <Nav />
+      <Nav loggingHandler={loggingHandler} />
       <Computer />
       <Outline />
-      <Posts />
+      <Posts log={logging} />
     </div>
   );
 }
